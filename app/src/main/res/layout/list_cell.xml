@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="5dp"
+
+              android:background="@drawable/list_cell_background">
+
+    <TextView
+        android:id="@+id/nom"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="20dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        tools:text="Biere"
+        android:textColor="#000000">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/degre"
+        android:layout_width="80dp"
+        android:gravity="right"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:lines="1"
+        android:ellipsize="end"
+        tools:text="Degré"
+        android:textColor="#F30139"
+        android:textSize="20dp"
+        >
+
+    </TextView>
+    <TextView
+        android:id="@+id/note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:ellipsize="end"
+        tools:text="note"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="right"
+        />
+
+</LinearLayout>

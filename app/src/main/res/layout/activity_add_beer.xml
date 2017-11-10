@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent" >
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nom de la Bière"
+        android:textSize="25dp"
+        android:textColor="#000000"
+        android:gravity="center"
+        />
+    <EditText
+        android:id="@+id/nom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tooltipText="Nom de la Bière"
+        android:focusable="true"
+        />
+
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Degré"
+    android:textSize="25dp"
+    android:textColor="#000000"
+    android:gravity="center"
+    />
+
+    <EditText
+        android:id="@+id/degre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Note"
+        android:textSize="25dp"
+        android:textColor="#000000"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/blonde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blonde"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="80dp"
+            />
+        <RadioButton
+            android:id="@+id/brune"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brune"/>
+
+
+    </RadioGroup>
+
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ajouter"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:gravity="center"/>
+
+</LinearLayout>
