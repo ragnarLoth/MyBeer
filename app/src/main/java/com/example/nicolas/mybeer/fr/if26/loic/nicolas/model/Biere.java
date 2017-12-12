@@ -5,44 +5,56 @@ package com.example.nicolas.mybeer.fr.if26.loic.nicolas.model;
  */
 
 public class Biere {
-    private int id;
     private String nom;
-    private String degre;
-    private String note;
+    private Float degre;
+    private Float note;
+    private int id;
 
-    public Biere(int id,String nom, String degre, String note) {
+    //biere stockée dans la base
+    public Biere(String nom, Float degre, Float note, int id) {
+        this.nom = nom;
+        this.degre = degre;
+        this.note = note;
         this.id = id;
+    }
+    //bière avant l'ajout dans la base
+    public Biere(String nom, Float degre, Float note) {
         this.nom = nom;
         this.degre = degre;
         this.note = note;
     }
 
-    public String getLabel() {
-        return nom;
-    }
-
-    public String getPrix() {
-        return degre;
-    }
-
-    public String getDate() {
-        return note;
-    }
 
     public int getId() {
         return id;
     }
 
-    public void setLabel(String nom) {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public void setDate(String note) {
-        this.note = note;
+    public Float getDegre() {
+        return degre;
     }
 
-    public void setPrix(String degre) {
+    public void setDegre(Float degre) {
         this.degre = degre;
+    }
+
+    public Float getNote() {
+        return note;
+    }
+
+    public void setNote(Float note) {
+        this.note = note;
     }
 
     @Override

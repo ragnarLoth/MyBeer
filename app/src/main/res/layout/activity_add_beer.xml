@@ -37,7 +37,7 @@
         android:id="@+id/degre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:tooltipText="de 0 à 70"
         />
     <TextView
@@ -54,7 +54,7 @@
         android:id="@+id/note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:tooltipText="De 0 à 20"
         />
 

@@ -8,6 +8,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private MyAdapter adapter = new MyAdapter();
     DataBaseDepense myDb;
     public  static final String ID_BEER = "ID_BEER";
+    private RecyclerView rv;
 
 
     @Override
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle(getString(R.string.MyBeer));
         //on construit la recycleView
-        final RecyclerView rv = (RecyclerView) findViewById(R.id.list);
+        rv = (RecyclerView) findViewById(R.id.list);
         //on positionne élément en ligne
         rv.setLayoutManager(new LinearLayoutManager(this));
         //Permet de séparer chaque biere par une barre horizontale
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
         myDb = new DataBaseDepense(this);
         //on affiche la liste de bière
-        afficherBiere();
+        afficherBiere(myDb.COL_2);
 
 
     }
@@ -68,13 +70,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.degreSort:
-            /* DO EDIT */
+                afficherBiere(DataBaseDepense.COL_3 + " DESC");
                 return true;
             case R.id.noteSort:
-            /* DO EDIT */
+                afficherBiere(DataBaseDepense.COL_4 + " DESC");
                 return true;
             case R.id.alphabeticSort:
-            trierABC();
+                afficherBiere(DataBaseDepense.COL_2);
+                return true;
+            case R.id.sortId:
+                afficherBiere(DataBaseDepense.COL_1);
                 return true;
             case R.id.action_add:
                 Toast.makeText(this,"Ajouter une bière", Toast.LENGTH_LONG).show();
@@ -85,26 +90,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void afficherBiere(){
+    public void afficherBiere(String orderby) {
         adapter.getList().clear();
-        Cursor resultat =  myDb.getAllData();
-//   Cursor resultat = myDb.getReadableDatabase().query(
-//                DataBaseDepense.TABLE_NAME,
-//                [DataBaseDepense.COL_2, DataBaseDepense.COL_3, DataBaseDepense.COL_4],
-
-      //  )
-        while (resultat.moveToNext()){
-            Biere newBiere = new Biere(resultat.getInt(resultat.getColumnIndex(myDb.COL_1)), resultat.getString(resultat.getColumnIndex(myDb.COL_2))
-                    , resultat.getString(resultat.getColumnIndex(myDb.COL_3)), resultat.getString(resultat.getColumnIndex(myDb.COL_4)));
-            adapter.getList().add(newBiere);
-        }
-    }
-
-    public void trierABC(){
+        ArrayList<Biere> beers = myDb.getAllData(orderby);
+        adapter.change(beers);
 
     }
-
-
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
@@ -134,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
             holder.display(pair);
         }
 
+        public void change(ArrayList<Biere> beers) {
+            list = beers;
+            notifyDataSetChanged();
+        }
+
         public ArrayList<Biere> getList() {
             return list;
         }
@@ -161,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
 //                                .show();
                         Intent i = new Intent(MainActivity.this, DisplayBeer.class);
                         int idBeer = currentPair.getId();
+                        Log.d("biere", idBeer+"");
                         i.putExtra(ID_BEER, idBeer);
                         startActivity(i);
                     }
@@ -170,9 +167,9 @@ public class MainActivity extends AppCompatActivity {
             //affiche les données de la pair fourni
             public void display(Biere pair) {
                 currentPair = pair;
-                nom.setText(pair.getLabel());
-                degre.setText(pair.getPrix());
-                note.setText(pair.getDate());
+                nom.setText(pair.getNom());
+                degre.setText(pair.getDegre()+"");
+                note.setText(pair.getNote()+"");
             }
         }
 
