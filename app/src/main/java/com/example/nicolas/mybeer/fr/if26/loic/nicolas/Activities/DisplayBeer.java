@@ -1,10 +1,10 @@
-package com.example.nicolas.mybeer.fr.if26.loic.nicolas;
+package com.example.nicolas.mybeer.fr.if26.loic.nicolas.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import com.example.nicolas.mybeer.MainActivity;
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Activities.MainActivity;
 import com.example.nicolas.mybeer.R;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.Biere;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.DataBaseDepense;

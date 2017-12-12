@@ -1,10 +1,7 @@
-package com.example.nicolas.mybeer;
+package com.example.nicolas.mybeer.fr.if26.loic.nicolas.Activities;
 
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,21 +11,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nicolas.mybeer.fr.if26.loic.nicolas.DisplayBeer;
-import com.example.nicolas.mybeer.fr.if26.loic.nicolas.controler.AddBeer;
+import com.example.nicolas.mybeer.R;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.controler.DividerItemDecoration;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.Biere;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.DataBaseDepense;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {

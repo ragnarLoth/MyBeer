@@ -1,4 +1,4 @@
-package com.example.nicolas.mybeer.fr.if26.loic.nicolas.controler;
+package com.example.nicolas.mybeer.fr.if26.loic.nicolas.Activities;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.nicolas.mybeer.MainActivity;
 import com.example.nicolas.mybeer.R;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.Biere;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.DataBaseDepense;
