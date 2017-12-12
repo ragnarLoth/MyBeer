@@ -3,12 +3,12 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.example.nicolas.savemoney.MainActivity">
     <item
-        android:id="@+id/degreSort"
+        android:id="@+id/noteSort"
         android:orderInCategory="100"
         android:title="@string/trier_par_note"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/noteSort"
+        android:id="@+id/degreSort"
         android:orderInCategory="100"
         android:title="@string/trier_par_degré"
         app:showAsAction="never"/>
@@ -17,6 +17,10 @@
         android:orderInCategory="100"
         android:title="@string/trier_alphabétiquement"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/sortId"
+        android:title="Trier par ordre d'ajout"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_add"
         android:orderInCategory="100"

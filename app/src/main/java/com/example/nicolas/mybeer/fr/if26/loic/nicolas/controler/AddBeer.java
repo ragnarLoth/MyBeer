@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.nicolas.mybeer.MainActivity;
 import com.example.nicolas.mybeer.R;
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.Biere;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.DataBaseDepense;
 
 
@@ -49,16 +50,15 @@ public class AddBeer extends AppCompatActivity {
                             Toast.makeText(AddBeer.this, "Veuillez remplir tous les champs", Toast.LENGTH_LONG).show();
                         return;
                         }
-                        int noteEntier = Integer.parseInt(note.getText().toString());
-                        int degreNombre = Integer.parseInt(degre.getText().toString());
+                        Float noteEntier = Float.parseFloat(note.getText().toString());
+                        Float degreNombre = Float.parseFloat(degre.getText().toString());
                         //si la note est entre 0 et 20 on continue
                         if (noteEntier >= 0 && noteEntier <= 20) {
                             //si le degré est entre 0 et 70 on continue
                             if (degreNombre >= 0 && degreNombre < 70) {
                                 //on regarde si les données sont entrées en base via un booléen
-                                boolean isInserted = myDb.insertData(nom.getText().toString(),
-                                        degre.getText().toString(),
-                                        note.getText().toString());
+                                boolean isInserted = myDb.insertData(
+                                        new Biere(nom.getText().toString(), degreNombre, noteEntier));
                                 //si elles sont entrées on affiche un Toast et on retourne sur la page principale
                                 if (isInserted == true) {
                                     Toast.makeText(AddBeer.this, "Bière ajoutée", Toast.LENGTH_LONG).show();
