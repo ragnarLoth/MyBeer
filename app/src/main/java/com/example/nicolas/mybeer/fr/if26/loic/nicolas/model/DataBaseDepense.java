@@ -1,4 +1,4 @@
-package com.example.nicolas.mybeer;
+package com.example.nicolas.mybeer.fr.if26.loic.nicolas.model;
 
 import android.content.ContentValues;
 import android.content.Context;

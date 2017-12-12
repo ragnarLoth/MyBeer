@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent" >
+              android:layout_height="fill_parent"
+              android:background="@drawable/back"
+   >
 
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nom de la Bière"
+        android:text="Nom de la Bière*"
         android:textSize="25dp"
         android:textColor="#000000"
         android:gravity="center"
@@ -25,7 +27,7 @@
     <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Degré"
+    android:text="Degré*"
     android:textSize="25dp"
     android:textColor="#000000"
     android:gravity="center"
@@ -36,14 +38,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:tooltipText="de 0 à 70"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Note"
+        android:text="Note*"
         android:textSize="25dp"
         android:textColor="#000000"
         android:gravity="center"
+
         />
 
     <EditText
@@ -51,33 +55,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:tooltipText="De 0 à 20"
         />
 
-    <RadioGroup
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/radioGroup"
-        android:orientation="horizontal"
-        >
+        android:text="Commentaire"
+        android:textSize="25dp"
+        android:textColor="#000000"
+        android:gravity="center"
 
-        <RadioButton
-            android:id="@+id/blonde"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Blonde"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="80dp"
-            />
-        <RadioButton
-            android:id="@+id/brune"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Brune"/>
+        />
 
-
-    </RadioGroup>
-
-
+    <EditText
+        android:id="@+id/commentaire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:tooltipText=""
+        />
     <Button
         android:id="@+id/addButton"
         android:layout_marginTop="40dp"
@@ -87,5 +84,14 @@
         android:textSize="20dp"
         android:textColor="#000000"
         android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(*) champs obligatoire"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:gravity="center"
+        />
 
 </LinearLayout>

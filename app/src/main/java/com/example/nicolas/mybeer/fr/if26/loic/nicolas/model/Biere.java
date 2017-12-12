@@ -15,7 +15,6 @@ public class Biere {
         this.note = note;
     }
 
-
     public String getLabel() {
         return nom;
     }

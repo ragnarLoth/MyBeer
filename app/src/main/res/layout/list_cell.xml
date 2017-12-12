@@ -4,8 +4,12 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_margin="5dp"
+              android:background="@drawable/list_cell_background"
+              tools:ignore="Orientation"
+              android:orientation="horizontal">
 
-              android:background="@drawable/list_cell_background">
+
+
 
     <TextView
         android:id="@+id/nom"
@@ -15,11 +19,12 @@
         android:layout_marginBottom="2dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="20dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30dp"
         tools:text="Biere"
-        android:textColor="#000000">
+      >
 
     </TextView>
+
 
     <TextView
         android:id="@+id/degre"
@@ -30,8 +35,7 @@
         android:lines="1"
         android:ellipsize="end"
         tools:text="Degré"
-        android:textColor="#F30139"
-        android:textSize="20dp"
+        android:textSize="30dp"
         >
 
     </TextView>
@@ -42,8 +46,7 @@
         android:lines="1"
         android:ellipsize="end"
         tools:text="note"
-        android:textColor="#000000"
-        android:textSize="20dp"
+        android:textSize="30dp"
         android:layout_marginRight="20dp"
         android:gravity="right"
         />

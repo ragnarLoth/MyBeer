@@ -3,21 +3,31 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.example.nicolas.savemoney.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/degreSort"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/trier_par_note"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/noteSort"
+        android:orderInCategory="100"
+        android:title="@string/trier_par_degré"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/alphabeticSort"
+        android:orderInCategory="100"
+        android:title="@string/trier_alphabétiquement"
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_add"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:icon="@android:drawable/ic_input_add"/>
 
-    <item
-        android:id="@+id/action_remove"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="always"
-        android:icon="@android:drawable/ic_delete"/>
+    <!--<item-->
+        <!--android:id="@+id/action_remove"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:title="@string/action_settings"-->
+        <!--app:showAsAction="always"-->
+        <!--android:icon="@android:drawable/ic_delete"/>-->
 </menu>

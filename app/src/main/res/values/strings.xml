@@ -2,4 +2,7 @@
     <string name="app_name">MyBeer</string>
     <string name="action_settings">setting</string>
     <string name="MyBeer">MyBeer</string>
+    <string name="trier_alphabétiquement">Trier alphabétiquement</string>
+    <string name="trier_par_degré">Trier par degré</string>
+    <string name="trier_par_note">Trier par note</string>
 </resources>
