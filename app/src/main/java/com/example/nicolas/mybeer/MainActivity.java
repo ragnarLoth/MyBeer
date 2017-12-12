@@ -17,6 +17,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.DisplayBeer;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.controler.AddBeer;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.controler.DividerItemDecoration;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.Biere;
@@ -32,6 +33,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private MyAdapter adapter = new MyAdapter();
     DataBaseDepense myDb;
+    public  static final String ID_BEER = "ID_BEER";
 
 
     @Override
@@ -92,7 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
       //  )
         while (resultat.moveToNext()){
-            Biere newBiere = new Biere(resultat.getString(1), resultat.getString(2), resultat.getString(3));
+            Biere newBiere = new Biere(resultat.getInt(resultat.getColumnIndex(myDb.COL_1)), resultat.getString(resultat.getColumnIndex(myDb.COL_2))
+                    , resultat.getString(resultat.getColumnIndex(myDb.COL_3)), resultat.getString(resultat.getColumnIndex(myDb.COL_4)));
             adapter.getList().add(newBiere);
         }
     }
@@ -152,10 +155,14 @@ public class MainActivity extends AppCompatActivity {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new AlertDialog.Builder(itemView.getContext())
-                                .setTitle(currentPair.getLabel())
-                                .setMessage(currentPair.getPrix() + " le: " + currentPair.getDate())
-                                .show();
+//                        new AlertDialog.Builder(itemView.getContext())
+//                                .setTitle(currentPair.getLabel())
+//                                .setMessage(currentPair.getPrix() + " le: " + currentPair.getDate())
+//                                .show();
+                        Intent i = new Intent(MainActivity.this, DisplayBeer.class);
+                        int idBeer = currentPair.getId();
+                        i.putExtra(ID_BEER, idBeer);
+                        startActivity(i);
                     }
                 });
             }

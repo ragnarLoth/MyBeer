@@ -21,6 +21,8 @@
         android:layout_marginRight="20dp"
         android:textSize="30dp"
         tools:text="Biere"
+        android:ellipsize="end"
+        android:lines="1"
       >
 
     </TextView>

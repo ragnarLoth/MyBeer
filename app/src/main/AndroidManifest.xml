@@ -18,6 +18,11 @@
         </activity>
         <activity android:name=".fr.if26.loic.nicolas.controler.AddBeer">
         </activity>
+        <activity
+            android:name=".fr.if26.loic.nicolas.DisplayBeer"
+            android:label="@string/title_activity_display_beer"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

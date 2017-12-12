@@ -5,11 +5,13 @@ package com.example.nicolas.mybeer.fr.if26.loic.nicolas.model;
  */
 
 public class Biere {
+    private int id;
     private String nom;
     private String degre;
     private String note;
 
-    public Biere(String nom, String degre, String note) {
+    public Biere(int id,String nom, String degre, String note) {
+        this.id = id;
         this.nom = nom;
         this.degre = degre;
         this.note = note;
@@ -25,6 +27,10 @@ public class Biere {
 
     public String getDate() {
         return note;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setLabel(String nom) {

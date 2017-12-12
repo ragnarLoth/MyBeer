@@ -51,6 +51,12 @@ public class DataBaseDepense extends SQLiteOpenHelper {
         return res;
     }
 
+    public Biere getBeer(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from "+TABLE_NAME + " WHERE " + COL_1 + " = ?",[ id ]);
+        return res;
+    }
+
     public boolean updateData(String id,String name,String surname,String marks) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
