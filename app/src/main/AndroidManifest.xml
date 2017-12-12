@@ -9,17 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".fr.if26.loic.nicolas.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".fr.if26.loic.nicolas.controler.AddBeer">
+        <activity android:name=".fr.if26.loic.nicolas.Activities.AddBeer">
         </activity>
         <activity
-            android:name=".fr.if26.loic.nicolas.DisplayBeer"
+            android:name=".fr.if26.loic.nicolas.Activities.DisplayBeer"
             android:label="@string/title_activity_display_beer"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
