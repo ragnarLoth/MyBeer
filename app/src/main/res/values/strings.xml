@@ -5,4 +5,5 @@
     <string name="trier_alphabétiquement">Trier alphabétiquement</string>
     <string name="trier_par_degré">Trier par degré</string>
     <string name="trier_par_note">Trier par note</string>
+    <string name="title_activity_display_beer">DisplayBeer</string>
 </resources>

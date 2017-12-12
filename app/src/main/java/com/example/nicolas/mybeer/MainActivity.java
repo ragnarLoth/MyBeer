@@ -18,6 +18,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.DisplayBeer;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.controler.AddBeer;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.controler.DividerItemDecoration;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.Biere;
@@ -33,6 +34,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private MyAdapter adapter = new MyAdapter();
     DataBaseDepense myDb;
+    public  static final String ID_BEER = "ID_BEER";
     private RecyclerView rv;
 
 
@@ -149,10 +151,15 @@ public class MainActivity extends AppCompatActivity {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new AlertDialog.Builder(itemView.getContext())
-                                .setTitle(currentPair.getNom())
-                                .setMessage(currentPair.getDegre() + " le: " + currentPair.getNote())
-                                .show();
+//                        new AlertDialog.Builder(itemView.getContext())
+//                                .setTitle(currentPair.getLabel())
+//                                .setMessage(currentPair.getPrix() + " le: " + currentPair.getDate())
+//                                .show();
+                        Intent i = new Intent(MainActivity.this, DisplayBeer.class);
+                        int idBeer = currentPair.getId();
+                        Log.d("biere", idBeer+"");
+                        i.putExtra(ID_BEER, idBeer);
+                        startActivity(i);
                     }
                 });
             }

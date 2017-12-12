@@ -61,6 +61,18 @@ public class DataBaseDepense extends SQLiteOpenHelper {
         return beers;
     }
 
+    public Biere getBiere(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] projection = {
+                COL_1,COL_2, COL_3, COL_4
+        };
+        String selection = COL_1 + "= ?";
+        String[] selectionArgs = {id + ""};
+        Cursor res = db.query(TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+       res.moveToFirst();
+        return cursorToBeer(res);
+    }
+
     public boolean updateData(String id,String name,float surname,float marks) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -81,7 +93,8 @@ public class DataBaseDepense extends SQLiteOpenHelper {
         return new Biere(
                 c.getString(c.getColumnIndex(COL_2)),
                 c.getFloat(c.getColumnIndex(COL_3)),
-                c.getFloat(c.getColumnIndex(COL_4))
+                c.getFloat(c.getColumnIndex(COL_4)),
+                c.getInt(c.getColumnIndex(COL_1))
         );
     }
 }
