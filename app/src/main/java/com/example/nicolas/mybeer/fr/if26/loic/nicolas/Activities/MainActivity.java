@@ -58,21 +58,26 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    //Permet de récupérer les cliques sur les boutons
+    //Permet de récupérer les cliques sur les boutons du menu
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            //trie par degré
             case R.id.degreSort:
                 afficherBiere(DataBaseDepense.COL_3 + " DESC");
                 return true;
+            //trie par note
             case R.id.noteSort:
                 afficherBiere(DataBaseDepense.COL_4 + " DESC");
                 return true;
+            //trie par ordre alphabétique
             case R.id.alphabeticSort:
                 afficherBiere(DataBaseDepense.COL_2);
                 return true;
+            //trie par date d ajout
             case R.id.sortId:
                 afficherBiere(DataBaseDepense.COL_1);
                 return true;
+            //ajouter une biere
             case R.id.action_add:
                 Toast.makeText(this,"Ajouter une bière", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, AddBeer.class);

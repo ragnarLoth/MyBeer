@@ -9,24 +9,36 @@ public class Biere {
     private Float degre;
     private Float note;
     private int id;
+    private String comment;
 
     //biere stockée dans la base
-    public Biere(String nom, Float degre, Float note, int id) {
+    public Biere(String nom, Float degre, Float note, int id, String comment) {
         this.nom = nom;
         this.degre = degre;
         this.note = note;
         this.id = id;
+        this.comment = comment;
     }
+
     //bière avant l'ajout dans la base
-    public Biere(String nom, Float degre, Float note) {
+    public Biere(String nom, Float degre, Float note, String comment) {
         this.nom = nom;
         this.degre = degre;
         this.note = note;
+        this.comment = comment;
     }
 
 
     public int getId() {
         return id;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public void setId(int id) {

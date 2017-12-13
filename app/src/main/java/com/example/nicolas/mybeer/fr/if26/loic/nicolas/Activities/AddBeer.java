@@ -18,7 +18,7 @@ public class AddBeer extends AppCompatActivity {
     //On instancie la BDD
     DataBaseDepense myDb;
     //on relie les champs du formulaire à notre classe
-    EditText nom, degre, note;
+    EditText nom, degre, note, commentaire;
     Button btnAddData;
     MediaPlayer mp;
 
@@ -33,6 +33,7 @@ public class AddBeer extends AppCompatActivity {
         nom = (EditText) findViewById(R.id.nom);
         degre = (EditText) findViewById(R.id.degre);
         note = (EditText) findViewById(R.id.note);
+        commentaire = (EditText) findViewById(R.id.commentaire);
         btnAddData = (Button) findViewById(R.id.addButton);
         AddData();
     }
@@ -57,7 +58,7 @@ public class AddBeer extends AppCompatActivity {
                             if (degreNombre >= 0 && degreNombre < 70) {
                                 //on regarde si les données sont entrées en base via un booléen
                                 boolean isInserted = myDb.insertData(
-                                        new Biere(nom.getText().toString(), degreNombre, noteEntier));
+                                        new Biere(nom.getText().toString(), degreNombre, noteEntier, commentaire.getText().toString()));
                                 //si elles sont entrées on affiche un Toast et on retourne sur la page principale
                                 if (isInserted == true) {
                                     Toast.makeText(AddBeer.this, "Bière ajoutée", Toast.LENGTH_LONG).show();

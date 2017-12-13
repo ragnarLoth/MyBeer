@@ -11,7 +11,7 @@ import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.DataBaseDepense;
 
 public class DisplayBeer extends AppCompatActivity {
 
-    private TextView nameBeer;
+    private TextView nameBeer, noteBeer, degreBeer, commentaireBeer;
     //On instancie la BDD
     DataBaseDepense myDb;
     private Biere beer;
@@ -22,9 +22,15 @@ public class DisplayBeer extends AppCompatActivity {
         setContentView(R.layout.activity_display_beer);
         myDb = new DataBaseDepense(this);
         nameBeer = (TextView) findViewById(R.id.nameBeer);
+        noteBeer = (TextView) findViewById(R.id.noteBeer);
+        degreBeer = (TextView) findViewById(R.id.degreBeer);
+        commentaireBeer = (TextView) findViewById(R.id.commentaireBeer);
         Intent i = getIntent();
         beer = myDb.getBiere(i.getIntExtra(MainActivity.ID_BEER, 0));
         nameBeer.setText(beer.getNom());
+        degreBeer.setText(beer.getDegre().toString()+" Degré");
+        noteBeer.setText(beer.getNote().toString()+ "/20");
+        commentaireBeer.setText("Commentaire: "+beer.getComment());
 
 
     }
