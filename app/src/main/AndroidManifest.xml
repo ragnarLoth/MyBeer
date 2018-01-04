@@ -20,8 +20,7 @@
         </activity>
         <activity
             android:name=".fr.if26.loic.nicolas.Activities.DisplayBeer"
-            android:label="@string/title_activity_display_beer"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/title_activity_display_beer">
         </activity>
     </application>
 

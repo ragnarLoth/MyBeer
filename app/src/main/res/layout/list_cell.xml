@@ -9,13 +9,17 @@
               android:orientation="horizontal">
 
 
-
+    <ImageView
+        android:layout_width="50sp"
+        android:layout_height="match_parent"
+        android:src="@drawable/beer_icon" />
 
     <TextView
         android:id="@+id/nom"
-        android:layout_width="130dp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:layout_marginBottom="2dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="20dp"
@@ -23,34 +27,36 @@
         tools:text="Biere"
         android:ellipsize="end"
         android:lines="1"
-      >
-
-    </TextView>
+        android:layout_weight="1"
+        />
 
 
     <TextView
         android:id="@+id/degre"
-        android:layout_width="80dp"
+        android:layout_width="wrap_content"
         android:gravity="right"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:lines="1"
         android:ellipsize="end"
         tools:text="Degré"
+        android:layout_margin="20sp"
         android:textSize="30dp"
-        >
+        android:layout_weight="1"
+        />
 
-    </TextView>
     <TextView
         android:id="@+id/note"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lines="1"
+        android:layout_gravity="center"
         android:ellipsize="end"
         tools:text="note"
         android:textSize="30dp"
         android:layout_marginRight="20dp"
         android:gravity="right"
+        android:layout_weight="1"
         />
 
 </LinearLayout>

@@ -73,20 +73,20 @@ public class DataBaseDepense extends SQLiteOpenHelper {
         return cursorToBeer(res);
     }
 
-    public boolean updateData(String id,String name,float surname,float marks) {
+    public boolean updateData(Biere beer) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1,id);
-        contentValues.put(COL_2,name);
-        contentValues.put(COL_3,surname);
-        contentValues.put(COL_4,marks);
-        db.update(TABLE_NAME, contentValues, "ID = ?",new String[] { id });
+        contentValues.put(COL_1, beer.getId());
+        contentValues.put(COL_2,beer.getNom());
+        contentValues.put(COL_3,beer.getDegre());
+        contentValues.put(COL_4,beer.getNote());
+        db.update(TABLE_NAME, contentValues, "ID = ?",new String[] { beer.getId()+"" });
         return true;
     }
 
-    public Integer deleteData (String id) {
+    public Integer deleteData (int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME, "ID = ?",new String[] {id});
+        return db.delete(TABLE_NAME, "ID = ?",new String[] {id+""});
     }
 
     public Biere cursorToBeer(Cursor c) {
