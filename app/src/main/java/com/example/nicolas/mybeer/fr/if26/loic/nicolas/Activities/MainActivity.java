@@ -1,6 +1,9 @@
 package com.example.nicolas.mybeer.fr.if26.loic.nicolas.Activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,11 +23,14 @@ import com.example.nicolas.mybeer.fr.if26.loic.nicolas.controler.DividerItemDeco
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.Biere;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.DataBaseDepense;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity {
+    public static final String DEFAULT = "null";
     private MyAdapter adapter = new MyAdapter();
     DataBaseDepense myDb;
     public  static final String ID_BEER = "ID_BEER";
@@ -35,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle(getString(R.string.MyBeer));
+        //dire bonjour à l'utilisateur
+        getInfo();
+
         //on construit la recycleView
         rv = (RecyclerView) findViewById(R.id.list);
         //on positionne élément en ligne
@@ -49,6 +59,44 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public void getInfo() {
+        final SharedPreferences sharedPreferences = getSharedPreferences("MyData", MODE_PRIVATE);
+        final String[] nom = {sharedPreferences.getString("nom", DEFAULT)};
+        final String[] prenom = {sharedPreferences.getString("prenom", DEFAULT)};
+        //si l'utilisateur ne s est jamais connecté
+        if (nom[0].equals(DEFAULT) || prenom[0].equals(DEFAULT)) {
+            // get prompts.xml view
+            LayoutInflater li = LayoutInflater.from(this);
+            View promptsView = li.inflate(R.layout.prompt, null);
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    this);
+            // set prompts.xml to alertdialog builder
+            alertDialogBuilder.setView(promptsView);
+            final EditText nomText = promptsView.findViewById(R.id.nom);
+            final EditText prenomText = promptsView.findViewById(R.id.prenom);
+            // set dialog message
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton("OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    prenom[0] = prenomText.getText().toString();
+                                    nom[0] = nomText.getText().toString();
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("prenom", prenom[0]);
+                                    editor.putString("nom", nom[0]);
+                                    editor.commit();
+                                }
+                            })
+                    .show();
+            Toast.makeText(this, "Bonjour" + prenom[0] + " " + nom[0], Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(this, "Bonjour" + prenom[0] +" " + nom[0], Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     //Affiche la toolbar
     @Override
@@ -153,10 +201,6 @@ public class MainActivity extends AppCompatActivity {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//                        new AlertDialog.Builder(itemView.getContext())
-//                                .setTitle(currentPair.getLabel())
-//                                .setMessage(currentPair.getPrix() + " le: " + currentPair.getDate())
-//                                .show();
                         Intent i = new Intent(MainActivity.this, DisplayBeer.class);
                         int idBeer = currentPair.getId();
                         Log.d("biere", idBeer+"");

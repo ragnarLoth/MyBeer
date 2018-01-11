@@ -6,4 +6,16 @@
     <string name="trier_par_degré">Trier par degré</string>
     <string name="trier_par_note">Trier par note</string>
     <string name="title_activity_display_beer">DisplayBeer</string>
+    <string name="error_text_missing">Veuillez remplir tous les champs</string>
+    <string name="beer_added">Bière ajoutée</string>
+    <string name="data_not_inserted">Data not Inserted</string>
+    <string name="wrong_degre">Le degré n\'est pas valide</string>
+    <string name="wrong_note">La note doit être entre 0 et 17</string>
+    <string name="display_beer">Display a beer</string>
+    <string name="degre">Degré</string>
+    <string name="delete_beer">Delete beer</string>
+    <string name="sure_to_delete">Do you really want to delete</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="beer">biere</string>
 </resources>

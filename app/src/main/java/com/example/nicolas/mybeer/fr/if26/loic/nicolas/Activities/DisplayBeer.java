@@ -32,26 +32,19 @@ public class DisplayBeer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_beer);
         context = this;
-        setTitle("Display a beer");
+        setTitle(getString(R.string.display_beer));
         myDb = new DataBaseDepense(this);
         nameBeer = (TextView) findViewById(R.id.nameBeer);
-        noteBeer = (TextView) findViewById(R.id.noteBeer);
-        degreBeer = (TextView) findViewById(R.id.degreBeer);
-        commentaireBeer = (TextView) findViewById(R.id.commentaireBeer);
         Intent i = getIntent();
         beer = myDb.getBiere(i.getIntExtra(MainActivity.ID_BEER, 0));
         nameBeer.setText(beer.getNom());
-        degreBeer.setText(beer.getDegre().toString()+" Degré");
-        noteBeer.setText(beer.getNote().toString()+ "/20");
-        commentaireBeer.setText("Commentaire: "+beer.getComment());
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         TextView note = (TextView) findViewById(R.id.display_note);
         TextView percentage = (TextView) findViewById(R.id.display_percentage);
 
-        note.setText(beer.getNote() + "/5");
+        note.setText(beer.getNote() + "/17");
         percentage.setText(beer.getDegre() + "%");
 
         ImageButton btn_delete = (ImageButton) findViewById(R.id.delete_beer);
@@ -60,16 +53,16 @@ public class DisplayBeer extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Delete beer")
-                        .setMessage("Do you really want to delete " + beer.getNom() + " ?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.delete_beer)
+                        .setMessage(getString(R.string.sure_to_delete) + beer.getNom() + " ?")
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 myDb.deleteData(beer.getId());
                                 finish();
                             }
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.dismiss();

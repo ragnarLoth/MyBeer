@@ -43,7 +43,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Note* (sur 20)"
+        android:text="Note* (sur 17)"
         android:textSize="25dp"
         android:textColor="#000000"
         android:gravity="center"
@@ -58,23 +58,6 @@
         android:tooltipText="De 0 à 20"
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Commentaire"
-        android:textSize="25dp"
-        android:textColor="#000000"
-        android:gravity="center"
-
-        />
-
-    <EditText
-        android:id="@+id/commentaire"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:tooltipText=""
-        />
     <Button
         android:id="@+id/addButton"
         android:layout_marginTop="40dp"

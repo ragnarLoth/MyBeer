@@ -9,36 +9,25 @@ public class Biere {
     private Float degre;
     private Float note;
     private int id;
-    private String comment;
 
     //biere stockée dans la base
-    public Biere(String nom, Float degre, Float note, int id, String comment) {
+    public Biere(String nom, Float degre, Float note, int id) {
         this.nom = nom;
         this.degre = degre;
         this.note = note;
         this.id = id;
-        this.comment = comment;
     }
 
     //bière avant l'ajout dans la base
-    public Biere(String nom, Float degre, Float note, String comment) {
+    public Biere(String nom, Float degre, Float note) {
         this.nom = nom;
         this.degre = degre;
         this.note = note;
-        this.comment = comment;
     }
 
 
     public int getId() {
         return id;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 
     public void setId(int id) {
@@ -71,8 +60,7 @@ public class Biere {
 
     @Override
     public String toString() {
-        return "Depense{" +
-                "nom='" + nom + '\'' +
+        return   "nom='" + nom + '\'' +
                 ", degre=" + degre + ", note: " + note +
                 '}';
     }
