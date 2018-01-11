@@ -91,7 +91,12 @@ public class MainActivity extends AppCompatActivity {
         adapter.getList().clear();
         ArrayList<Biere> beers = myDb.getAllData(orderby);
         adapter.change(beers);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        afficherBiere(myDb.COL_2);
     }
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {

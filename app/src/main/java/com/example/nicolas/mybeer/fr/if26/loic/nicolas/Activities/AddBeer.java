@@ -35,7 +35,13 @@ public class AddBeer extends AppCompatActivity {
         note = (EditText) findViewById(R.id.note);
         commentaire = (EditText) findViewById(R.id.commentaire);
         btnAddData = (Button) findViewById(R.id.addButton);
-        AddData();
+
+        if (getIntent().getBooleanExtra("UPDATE", false)) {
+            // TODO
+
+        } else {
+            AddData();
+        }
     }
 
     //lorsque l'utilisateur valide, on vérifie les données et on les entre dans la BDD
