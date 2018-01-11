@@ -91,7 +91,5 @@
             android:src="@drawable/trash"/>
 
     </LinearLayout>
-    
-
 
 </LinearLayout>
