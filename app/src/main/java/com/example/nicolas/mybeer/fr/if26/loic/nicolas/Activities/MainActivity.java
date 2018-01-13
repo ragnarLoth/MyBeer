@@ -23,10 +23,9 @@ import com.example.nicolas.mybeer.fr.if26.loic.nicolas.controler.DividerItemDeco
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.Biere;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.DataBaseDepense;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rv;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         setTitle(getString(R.string.MyBeer));
         //dire bonjour à l'utilisateur
         getInfo();
-
         //on construit la recycleView
         rv = (RecyclerView) findViewById(R.id.list);
         //on positionne élément en ligne
@@ -61,40 +60,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getInfo() {
-        final SharedPreferences sharedPreferences = getSharedPreferences("MyData", MODE_PRIVATE);
-        final String[] nom = {sharedPreferences.getString("nom", DEFAULT)};
-        final String[] prenom = {sharedPreferences.getString("prenom", DEFAULT)};
+        SharedPreferences sharedPreferences = getSharedPreferences("MyData", MODE_PRIVATE);
+        String nom = sharedPreferences.getString("nom", DEFAULT);
+        String prenom = sharedPreferences.getString("prenom", DEFAULT);
         //si l'utilisateur ne s est jamais connecté
-        if (nom[0].equals(DEFAULT) || prenom[0].equals(DEFAULT)) {
-            // get prompts.xml view
-            LayoutInflater li = LayoutInflater.from(this);
-            View promptsView = li.inflate(R.layout.prompt, null);
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                    this);
-            // set prompts.xml to alertdialog builder
-            alertDialogBuilder.setView(promptsView);
-            final EditText nomText = promptsView.findViewById(R.id.nom);
-            final EditText prenomText = promptsView.findViewById(R.id.prenom);
-            // set dialog message
-            alertDialogBuilder
-                    .setCancelable(false)
-                    .setPositiveButton("OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    prenom[0] = prenomText.getText().toString();
-                                    nom[0] = nomText.getText().toString();
-                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putString("prenom", prenom[0]);
-                                    editor.putString("nom", nom[0]);
-                                    editor.commit();
-                                }
-                            })
-                    .show();
-            Toast.makeText(this, "Bonjour" + prenom[0] + " " + nom[0], Toast.LENGTH_LONG).show();
+        if (nom.equals(DEFAULT) || prenom.equals(DEFAULT)) {
+           alertReturn();
+        }else{
+            Toast.makeText(this, "Bonjour " + prenom +" " +
+                   nom, Toast.LENGTH_LONG).show();
         }
-        else{
-            Toast.makeText(this, "Bonjour" + prenom[0] +" " + nom[0], Toast.LENGTH_LONG).show();
-        }
+    }
+
+    public void alertReturn(){
+        // get prompts.xml view
+        final LayoutInflater li = LayoutInflater.from(this);
+        View promptsView = li.inflate(R.layout.prompt, null);
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(promptsView);
+        final EditText nomText = promptsView.findViewById(R.id.nom);
+        final EditText prenomText = promptsView.findViewById(R.id.prenom);
+        // set dialog message
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                               String prenom = prenomText.getText().toString();
+                                String nom = nomText.getText().toString();
+                                final SharedPreferences sharedPreferences = getSharedPreferences("MyData", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("prenom", prenom);
+                                editor.putString("nom", nom);
+                                editor.commit();
+                            }
+                        })
+                .show();
     }
 
 
