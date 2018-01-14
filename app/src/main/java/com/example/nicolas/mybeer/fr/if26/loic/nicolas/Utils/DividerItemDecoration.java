@@ -1,4 +1,4 @@
-package com.example.nicolas.mybeer.fr.if26.loic.nicolas.controler;
+package com.example.nicolas.mybeer.fr.if26.loic.nicolas.Utils;
 /**
  * Created by Nicolas on 20/10/2017.
  */

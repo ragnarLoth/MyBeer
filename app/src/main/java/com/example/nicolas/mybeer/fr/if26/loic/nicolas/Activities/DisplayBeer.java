@@ -6,24 +6,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextSwitcher;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
-import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Activities.MainActivity;
 import com.example.nicolas.mybeer.R;
-import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.Biere;
-import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.DataBaseDepense;
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Controller.BiereController;
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Model.Biere;
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Utils.DataBaseOpenHelper;
 
 public class DisplayBeer extends AppCompatActivity {
 
     private TextView nameBeer, noteBeer, degreBeer, commentaireBeer;
     //On instancie la BDD
-    DataBaseDepense myDb;
+    private DataBaseOpenHelper myDb;
+    private BiereController controller;
     private Biere beer;
     private Context context;
 
@@ -33,10 +30,11 @@ public class DisplayBeer extends AppCompatActivity {
         setContentView(R.layout.activity_display_beer);
         context = this;
         setTitle(getString(R.string.display_beer));
-        myDb = new DataBaseDepense(this);
+        myDb = new DataBaseOpenHelper(this);
+        controller = new BiereController(myDb);
         nameBeer = (TextView) findViewById(R.id.nameBeer);
         Intent i = getIntent();
-        beer = myDb.getBiere(i.getIntExtra(MainActivity.ID_BEER, 0));
+        beer = controller.getBiere(i.getIntExtra(MainActivity.ID_BEER, 0));
         nameBeer.setText(beer.getNom());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -58,7 +56,7 @@ public class DisplayBeer extends AppCompatActivity {
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                myDb.deleteData(beer.getId());
+                                controller.deleteData(beer.getId());
                                 finish();
                             }
                         })

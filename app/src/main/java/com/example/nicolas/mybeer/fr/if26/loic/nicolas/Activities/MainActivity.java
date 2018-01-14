@@ -19,19 +19,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nicolas.mybeer.R;
-import com.example.nicolas.mybeer.fr.if26.loic.nicolas.controler.DividerItemDecoration;
-import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.Biere;
-import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.DataBaseDepense;
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Controller.BiereController;
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Utils.DividerItemDecoration;
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Model.Biere;
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Utils.DataBaseOpenHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
     public static final String DEFAULT = "null";
     private MyAdapter adapter = new MyAdapter();
-    DataBaseDepense myDb;
+    private DataBaseOpenHelper myDb;
+    private BiereController controller;
     public  static final String ID_BEER = "ID_BEER";
     private RecyclerView rv;
 
@@ -52,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
         rv.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         //adapteur: objet affichant le contenu
         rv.setAdapter(adapter);
-        myDb = new DataBaseDepense(this);
+        myDb = new DataBaseOpenHelper(this);
+        controller = new BiereController(myDb);
         //on affiche la liste de bière
         afficherBiere(myDb.COL_2);
 
@@ -114,19 +116,19 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             //trie par degré
             case R.id.degreSort:
-                afficherBiere(DataBaseDepense.COL_3 + " DESC");
+                afficherBiere(DataBaseOpenHelper.COL_3 + " DESC");
                 return true;
             //trie par note
             case R.id.noteSort:
-                afficherBiere(DataBaseDepense.COL_4 + " DESC");
+                afficherBiere(DataBaseOpenHelper.COL_4 + " DESC");
                 return true;
             //trie par ordre alphabétique
             case R.id.alphabeticSort:
-                afficherBiere(DataBaseDepense.COL_2);
+                afficherBiere(DataBaseOpenHelper.COL_2);
                 return true;
             //trie par date d ajout
             case R.id.sortId:
-                afficherBiere(DataBaseDepense.COL_1);
+                afficherBiere(DataBaseOpenHelper.COL_1);
                 return true;
             //ajouter une biere
             case R.id.action_add:
@@ -140,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void afficherBiere(String orderby) {
         adapter.getList().clear();
-        ArrayList<Biere> beers = myDb.getAllData(orderby);
+        ArrayList<Biere> beers = controller.getAllData(orderby);
         adapter.change(beers);
     }
 

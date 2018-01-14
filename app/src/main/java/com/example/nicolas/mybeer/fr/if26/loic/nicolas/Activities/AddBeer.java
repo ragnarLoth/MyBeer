@@ -10,23 +10,26 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.nicolas.mybeer.R;
-import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.Biere;
-import com.example.nicolas.mybeer.fr.if26.loic.nicolas.model.DataBaseDepense;
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Controller.BiereController;
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Model.Biere;
+import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Utils.DataBaseOpenHelper;
 
 
 public class AddBeer extends AppCompatActivity {
     //On instancie la BDD
-    DataBaseDepense myDb;
+    private DataBaseOpenHelper myDb;
+    private BiereController controller;
     //on relie les champs du formulaire à notre classe
-    EditText nom, degre, note, commentaire;
-    Button btnAddData;
-    MediaPlayer mp;
+    private EditText nom, degre, note, commentaire;
+    private Button btnAddData;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beer);
-        myDb = new DataBaseDepense(this);
+        myDb = new DataBaseOpenHelper(this);
+        controller = new BiereController(myDb);
         mp = MediaPlayer.create(this, R.raw.beersound);
 
         //on relie les champs du formulaire à notre classe
@@ -55,7 +58,7 @@ public class AddBeer extends AppCompatActivity {
                             //si le degré est entre 0 et 70 on continue
                             if (degreNombre >= 0 && degreNombre < 70) {
                                 //on regarde si les données sont entrées en base via un booléen
-                                boolean isInserted = myDb.insertData(
+                                boolean isInserted = controller.insertData(
                                         new Biere(nom.getText().toString(), degreNombre, noteEntier));
                                 //si elles sont entrées on affiche un Toast et on retourne sur la page principale
                                 if (isInserted == true) {

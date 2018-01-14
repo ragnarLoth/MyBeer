@@ -1,4 +1,4 @@
-package com.example.nicolas.mybeer.fr.if26.loic.nicolas.model;
+package com.example.nicolas.mybeer.fr.if26.loic.nicolas.Model;
 
 /**
  * Created by Nicolas on 09/11/2017.
