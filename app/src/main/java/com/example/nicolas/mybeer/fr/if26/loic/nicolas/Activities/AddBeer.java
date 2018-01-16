@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +15,9 @@ import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Controller.BiereControlle
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Model.Biere;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Utils.DataBaseOpenHelper;
 
-
+/**
+ * This activity allow the user to add its beers to the database
+ */
 public class AddBeer extends AppCompatActivity {
     //On instancie la BDD
     private DataBaseOpenHelper myDb;
@@ -37,14 +40,13 @@ public class AddBeer extends AppCompatActivity {
         degre = (EditText) findViewById(R.id.degre);
         note = (EditText) findViewById(R.id.note);
         btnAddData = (Button) findViewById(R.id.addButton);
-    }
 
-    //lorsque l'utilisateur valide, on vérifie les données et on les entre dans la BDD
-    public void AddData() {
+        //lorsque l'utilisateur valide, on vérifie les données et on les entre dans la BDD
         btnAddData.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Log.d("IF26", "Pushed a button");
 
                         if(nom.getText().toString().trim().length() == 0 || degre.getText().toString().trim().length() == 0 ||
                                 note.getText().toString().trim().length() == 0){

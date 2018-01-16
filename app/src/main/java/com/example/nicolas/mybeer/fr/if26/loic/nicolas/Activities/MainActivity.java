@@ -1,6 +1,7 @@
 package com.example.nicolas.mybeer.fr.if26.loic.nicolas.Activities;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private DataBaseOpenHelper myDb;
     private BiereController controller;
     public  static final String ID_BEER = "ID_BEER";
+    private Context context;
     private RecyclerView rv;
 
 
@@ -43,17 +45,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle(getString(R.string.MyBeer));
+        context = this;
         //dire bonjour à l'utilisateur
         getInfo();
         //on construit la recycleView
         rv = (RecyclerView) findViewById(R.id.list);
         //on positionne élément en ligne
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setLayoutManager(new LinearLayoutManager(context));
         //Permet de séparer chaque biere par une barre horizontale
-        rv.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        rv.addItemDecoration(new DividerItemDecoration(context, LinearLayoutManager.VERTICAL));
         //adapteur: objet affichant le contenu
         rv.setAdapter(adapter);
-        myDb = new DataBaseOpenHelper(this);
+        myDb = new DataBaseOpenHelper(context);
         controller = new BiereController(myDb);
         //on affiche la liste de bière
         afficherBiere(myDb.COL_2);
@@ -61,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Get the users info to store into sharedpreferences
+     */
     public void getInfo() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyData", MODE_PRIVATE);
         String nom = sharedPreferences.getString("nom", DEFAULT);
@@ -74,9 +80,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Return som info about the user
+     */
     public void alertReturn(){
         // get prompts.xml view
-        final LayoutInflater li = LayoutInflater.from(this);
+        final LayoutInflater li = LayoutInflater.from(context);
         View promptsView = li.inflate(R.layout.prompt, null);
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
@@ -97,13 +106,16 @@ public class MainActivity extends AppCompatActivity {
                                 editor.putString("prenom", prenom);
                                 editor.putString("nom", nom);
                                 editor.commit();
+                                Toast.makeText(context, "Bonjour " + prenom + " " + nom, Toast.LENGTH_SHORT).show();
                             }
                         })
                 .show();
     }
 
 
-    //Affiche la toolbar
+    /**
+     * Affiche la toolbar
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -111,8 +123,10 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    //Permet de récupérer les cliques sur les boutons du menu
-    public boolean onOptionsItemSelected(MenuItem item) {
+    /**
+     * Permet de récupérer les cliques sur les boutons du menu
+    */
+     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             //trie par degré
             case R.id.degreSort:
@@ -140,6 +154,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Display all beers, by orderby
+     * @param orderby
+     */
     public void afficherBiere(String orderby) {
         adapter.getList().clear();
         ArrayList<Biere> beers = controller.getAllData(orderby);
@@ -152,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
         afficherBiere(myDb.COL_2);
     }
 
+    /**
+     * Adapter to display RecyclerView
+     */
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         //List contenant les bières

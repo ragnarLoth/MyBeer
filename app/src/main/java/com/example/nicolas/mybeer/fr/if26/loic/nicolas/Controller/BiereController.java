@@ -24,11 +24,20 @@ public class BiereController {
             DataBaseOpenHelper.COL_4
     };
 
+    /**
+     * Simple constructor
+     * @param dataBaseOpenHelper
+     */
     public BiereController(DataBaseOpenHelper dataBaseOpenHelper) {
         this.dataBaseOpenHelper = dataBaseOpenHelper;
         this.db = dataBaseOpenHelper.getWritableDatabase();
     }
 
+    /**
+     * Insert a beer into the database
+     * @param beer
+     * @return
+     */
     public boolean insertData(Biere beer) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(dataBaseOpenHelper.COL_2,beer.getNom());
@@ -41,6 +50,11 @@ public class BiereController {
             return true;
     }
 
+    /**
+     * get all beers from the database
+     * @param orderby
+     * @return
+     */
     public ArrayList<Biere> getAllData(String orderby) {
         ArrayList<Biere> beers = new ArrayList<>();
         Cursor res = db.query(DataBaseOpenHelper.TABLE_NAME, projection, null, null, null, null, orderby);
@@ -50,6 +64,11 @@ public class BiereController {
         return beers;
     }
 
+    /**
+     * Get one beer from the database thanks to its id
+     * @param id
+     * @return
+     */
     public Biere getBiere(int id){
         String selection = DataBaseOpenHelper.COL_1 + "= ?";
         String[] selectionArgs = {id + ""};
@@ -58,11 +77,21 @@ public class BiereController {
         return cursorToBeer(res);
     }
 
-    public Integer deleteData (int id) {
+    /**
+     * Delete a beer from the database
+     * @param id
+     * @return
+     */
+    public int deleteData (int id) {
         return db.delete(DataBaseOpenHelper.TABLE_NAME, "ID = ?",new String[] {id+""});
     }
 
-    public Biere cursorToBeer(Cursor c) {
+    /**
+     * get a cursor, return a beer, as simple as that
+     * @param c
+     * @return
+     */
+    private Biere cursorToBeer(Cursor c) {
         return new Biere(
                 c.getString(c.getColumnIndex(DataBaseOpenHelper.COL_2)),
                 c.getFloat(c.getColumnIndex(DataBaseOpenHelper.COL_3)),

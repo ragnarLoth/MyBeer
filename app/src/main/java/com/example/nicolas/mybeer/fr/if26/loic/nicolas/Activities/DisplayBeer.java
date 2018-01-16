@@ -15,6 +15,9 @@ import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Controller.BiereControlle
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Model.Biere;
 import com.example.nicolas.mybeer.fr.if26.loic.nicolas.Utils.DataBaseOpenHelper;
 
+/**
+ * This activity display all the informations about a beer
+ */
 public class DisplayBeer extends AppCompatActivity {
 
     private TextView nameBeer, noteBeer, degreBeer, commentaireBeer;
